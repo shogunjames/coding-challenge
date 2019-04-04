@@ -1,0 +1,16 @@
+{
+  "name": "chip/coding-challenge",
+  "description": "A coding challenge for applicants",
+  "type": "project",
+  "homepage": "https://www.chip.de",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "CHIP Digital GmbH",
+      "role": "company"
+    }
+  ],
+  "require": {
+    "php": "^7.2"
+  }
+}

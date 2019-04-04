@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+{% block title %}Chip Lists{% endblock %}
+{% block body %}
+{% if articles %}
+<table id="articles" class="table table-striped">
+      <thead>
+        <tr>
+          <th>headline</th>
+          <th>urlid</th>
+          <th>urlslug</th>
+          <th>subtitle</th>
+          <th>introductiontext</th>
+          <th>displayDate</th>
+          <th>authors Name </th>
+          <th>image</th>
+        </tr>
+</thead>
+<tbody>
+{% for article in articles %}
+          <tr>
+             <td>{{ article.headline}}</td>
+             <td>{{ article.urlid}}</td>
+             <td>{{ article.urlslug}}</td>
+             <td>{{ article.subtitle}}</td>
+             <td>{{ article.introductiontext}}</td>
+             <td>{{  article.displayDate|date("m/d/Y", "Europe/Paris") }}</td>
+             <td>{{ article.authorfirstname }} {{article.authorlastname }}</td>
+             <td><img src="{{article.url}}" height="200" width="250" alt="{{article.imagetext}}" /></td>            <td>
+             <a href="/chapters/{{article.id}}" class="btn btn-dark">Show</a>
+              </td>
+          </tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<p>No Articles Found</p>
+{% endif%}
+{% endblock %}
