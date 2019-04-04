@@ -25,8 +25,10 @@
              <td>{{ article.introductiontext}}</td>
              <td>{{  article.displayDate|date("m/d/Y", "Europe/Paris") }}</td>
              <td>{{ article.authorfirstname }} {{article.authorlastname }}</td>
-             <td><img src="{{article.url}}" height="200" width="250" alt="{{article.imagetext}}" /></td>            <td>
-             <a href="/lesson/{{article.id}}" class="btn btn-dark">Show</a>
+             <!--<td><img src="{{article.url}}" height="200" width="250" alt="{{article.imagetext}}" /></td> -->
+                        <td>
+            <a class="example-image-link" href="{{article.url}}" data-lightbox="example-1"><img class="example-image" src="{{article.url}}" height="200" width="250"  alt="image-1" /></a></td>
+            <td> <a href="/lesson/{{article.id}}" class="btn btn-dark">Show</a>
               </td>
           </tr>
 {% endfor %}
