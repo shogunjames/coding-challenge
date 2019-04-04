@@ -5,10 +5,11 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\BlogRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\LessonRepository")
  */
-class Chapters{
-/**
+class Lesson
+{
+    /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -16,11 +17,10 @@ class Chapters{
     private $id;
 
 
-    /**
+      /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $blogid;
-
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -33,7 +33,7 @@ class Chapters{
     private $chaptersheadline;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text")
      */
     private $chapterstext;
 
@@ -72,7 +72,22 @@ class Chapters{
      */
     private $chapterimagesource;
 
-    public function setBlogsid(?int $blogid): self
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $blogkey;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getBlogid(): ?Blog
+    {
+        return $this->blogid;
+    }
+
+    public function setBlogid(?Blog $blogid): self
     {
         $this->blogid = $blogid;
 
@@ -108,7 +123,7 @@ class Chapters{
         return $this->chapterstext;
     }
 
-    public function setChapterstext(?string $chapterstext): self
+    public function setChapterstext(string $chapterstext): self
     {
         $this->chapterstext = $chapterstext;
 
@@ -199,6 +214,15 @@ class Chapters{
         return $this;
     }
 
+    public function getBlogkey(): ?int
+    {
+        return $this->blogkey;
+    }
 
+    public function setBlogkey(int $blogkey): self
+    {
+        $this->blogkey = $blogkey;
+
+        return $this;
+    }
 }
-  

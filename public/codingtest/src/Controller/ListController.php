@@ -4,7 +4,7 @@ namespace AppBundle\EventListener;
 namespace App\Controller;
 
 use App\Entity\Blog;
-use App\Entity\Chapters;
+use App\Entity\Lesson;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,51 +29,66 @@ class ListController extends Controller
         $data = json_decode($contentvar, true);
         dump($data);
         //die;
-        $entityManager = $this->getDoctrine()->getManager();
-        $blog = new Blog();
 
-        $blog->setHeadline($data['headline']);
-        $blog->setUrlId($data['urlId']);
-        $blog->setUrlslug($data['urlSlug']);
+        try {
+            $entityManager = $this->getDoctrine()->getManager();
+            //$entityManager->getRepository('Blog::class')->findOneByName($data['urlId']);
 
-        $blog->setSubtitle($data['subtitle']);
-        $blog->setIntroductiontext($data['introduction']);
+            //if (($blog = $entityManager->getRepository('Blog::class')->findOneByName($data['urlId']))==null)
+        //{
+                
+                $blog = new Blog();
 
-        $blog->setDisplayDate($data['displayDate']['timestamp']);
+                $blog->setHeadline($data['headline']);
+                $blog->setUrlId($data['urlId']);
+                $blog->setUrlslug($data['urlSlug']);
 
-        $blog->setAuthorid($data['author']['id']);
+                $blog->setSubtitle($data['subtitle']);
+                $blog->setIntroductiontext($data['introduction']);
 
-        $blog->setAuthorfirstname($data['author']['firstName']);
+                $blog->setDisplayDate($data['displayDate']['timestamp']);
 
-        $blog->setAuthorlastname($data['author']['lastName']);
+                $blog->setAuthorid($data['author']['id']);
 
-        $blog->setImageid($data['image']['id']);
+                $blog->setAuthorfirstname($data['author']['firstName']);
 
-        $blog->setHeight($data['image']['height']);
+                $blog->setAuthorlastname($data['author']['lastName']);
 
-        $blog->setWidth($data['image']['width']);
+                $blog->setImageid($data['image']['id']);
 
-        $blog->setImagetext($data['image']['text']);
+                $blog->setHeight($data['image']['height']);
 
-        $blog->setUrl($data['image']['url']);
+                $blog->setWidth($data['image']['width']);
 
-        $blog->setSource($data['image']['source']);
+                $blog->setImagetext($data['image']['text']);
 
-        $entityManager->persist($blog);
+                $blog->setUrl($data['image']['url']);
 
-        $entityManager->flush();
+                $blog->setSource($data['image']['source']);
+
+                $entityManager->persist($blog);
+
+                $entityManager->flush();
+                }
+           // }
+        catch (UniqueConstraintViolationException $e) {
+                $this->getDoctrine()->resetManager();
+          }
+        
 
         $lastinsertedId = $blog->getId();
+
+
 
         $chapt = $data['chapters'];
         dump($data['chapters']);
         // die;
 
         foreach ($chapt as $chapter) {
-            $chapters = new Chapters();
+            $chapters = new Lesson();
             $chapters->setChaptersorder($chapter['id']);
 
-            $chapters->setBlogsid($lastinsertedId);
+            $chapters->setBlogkey($lastinsertedId);
 
             $chapters->setChaptersheadline($chapter['headline']);
 

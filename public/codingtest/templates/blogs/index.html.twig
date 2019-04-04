@@ -26,7 +26,7 @@
              <td>{{  article.displayDate|date("m/d/Y", "Europe/Paris") }}</td>
              <td>{{ article.authorfirstname }} {{article.authorlastname }}</td>
              <td><img src="{{article.url}}" height="200" width="250" alt="{{article.imagetext}}" /></td>            <td>
-             <a href="/chapters/{{article.id}}" class="btn btn-dark">Show</a>
+             <a href="/lesson/{{article.id}}" class="btn btn-dark">Show</a>
               </td>
           </tr>
 {% endfor %}
