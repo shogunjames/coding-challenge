@@ -16,8 +16,7 @@ class Lesson
      */
     private $id;
 
-
-      /**
+    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $blogid;

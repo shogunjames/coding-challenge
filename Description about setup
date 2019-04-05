@@ -1,0 +1,41 @@
+How to set up and run the project:-
+
+install docker composer and docker
+=================================
+Go to the following page and do the steps:-
+https://linuxize.com/post/how-to-install-and-use-docker-compose-on-ubuntu-18-04/
+
+install docker :-
+Go to the below url and do the steps:-
+https://docs.docker.com/install/linux/docker-ce/ubuntu/
+
+
+clone the files fom git respository
+====================================
+git clone https://github.com/shogunjames/coding-challenge.git
+
+Running the project:-
+=========================
+run the following command :-
+ sudo docker-compose up
+
+
+Take the url :-
+http://localhost:8080/
+
+To import database and tables
+===================================
+sudo docker exec -it php_api bash
+
+php bin/console make:migration
+
+php bin/console doctrine:migrations:migrate
+
+php bin/console doctrine:schema:update --force
+
+I have uploaded a video of my working code challenge work here:-
+
+https://github.com/shogunjames/coding-challenge/blob/master/working demo.mkv
+
+Thanks
+Shogun James

@@ -1,40 +1,30 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Chip Lists blog.chapterstext{% endblock %}
-{% block body %}
-{% if blog %}
-<table id="blog" class="table table-striped">
-      <thead>
-        <tr>
-         
-          <th>chapters headline</th>
-          <th>text</th>
-          <th>image</th>
-         
-         
-         
-        </tr>
-</thead>
-<tbody>
-{% for blogval in blog %}
-          <tr>
-            
-             <td>{{ blogval.chaptersheadline }}</td>
-              <td>{{ blogval.chapterstext}}</td>
-               
-                
-             <td>   <a class="example-image-link" href="{{ blogval.chapterimageurl}}" data-lightbox="example-1"><img class="example-image" src="{{ blogval.chapterimageurl}}" height="200" width="250"  alt="image-1" /></a></td> 
-                    
-
-            <td>
-            
-              </td>
-          </tr>
-{% endfor %}
-
-</tbody>
-</table>
-{% else %}
-<p>No blogs Found</p>
-{% endif%}
+{% block title %}Chip Lists blog.chapterstext
 {% endblock %}
+{% block body %}
+    {% if blog %}
+        <table class="table table-striped" id="blog">
+            <thead>
+                <tr>
+                    <th>chapters headline</th>
+                    <th>text</th>
+                    <th>image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for blogval in blog %}
+                    <tr>
+                        <td>{{ blogval.chaptersheadline }}</td>
+                        <td>{{ blogval.chapterstext}}</td>
+                        <td>
+                            <a class="example-image-link" href="{{ blogval.chapterimageurl}}" data-lightbox="example-1"><img class="example-image" src="{{ blogval.chapterimageurl}}" height="200" width="250" alt="image-1" /></a>
+                        </td>
+                        <td></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No blogs Found</p>
+        {% endif%}
+    {% endblock %}

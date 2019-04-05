@@ -1,40 +1,55 @@
 {% extends 'base.html.twig' %}
-{% block title %}Chip Lists{% endblock %}
+{% block title %}Chip Lists
+{% endblock %}
 {% block body %}
-{% if articles %}
-<table id="articles" class="table table-striped">
-      <thead>
-        <tr>
-          <th>headline</th>
-          <th>urlid</th>
-          <th>urlslug</th>
-          <th>subtitle</th>
-          <th>introductiontext</th>
-          <th>displayDate</th>
-          <th>authors Name </th>
-          <th>image</th>
-        </tr>
-</thead>
-<tbody>
-{% for article in articles %}
-          <tr>
-             <td>{{ article.headline}}</td>
-             <td>{{ article.urlid}}</td>
-             <td>{{ article.urlslug}}</td>
-             <td>{{ article.subtitle}}</td>
-             <td>{{ article.introductiontext}}</td>
-             <td>{{  article.displayDate|date("m/d/Y", "Europe/Paris") }}</td>
-             <td>{{ article.authorfirstname }} {{article.authorlastname }}</td>
-             <!--<td><img src="{{article.url}}" height="200" width="250" alt="{{article.imagetext}}" /></td> -->
-                        <td>
-            <a class="example-image-link" href="{{article.url}}" data-lightbox="example-1"><img class="example-image" src="{{article.url}}" height="200" width="250"  alt="image-1" /></a></td>
-            <td> <a href="/lesson/{{article.id}}" class="btn btn-dark">Show</a>
-              </td>
-          </tr>
-{% endfor %}
-</tbody>
-</table>
-{% else %}
-<p>No Articles Found . JSON is in Wrong format. Please Check</p>
-{% endif%}
+    <div class="rTable">
+        {% if articles %}
+            <div class="rTableRow">
+                <div class="rTableHead">
+                    <strong>headline</strong>
+                </div>
+                <div class="rTableHead">
+                    <span style="font-weight: bold;">urlid</span>
+                </div>
+                <div class="rTableHead">
+                    <strong>subtitle</strong>
+                </div>
+                <div class="rTableHead">
+                    <strong>introductiontext</strong>
+                </div>
+                <div class="rTableHead">
+                    <strong>displayDate</strong>
+                </div>
+                <div class="rTableHead">
+                    <strong>authors Name</strong>
+                </div>
+                <div class="rTableHead">
+                    <strong>image</strong>
+                </div>
+                <div class="rTableHead">
+                    <strong></strong>
+                </div>
+            </div>
+            <div class="rTableRow">
+                {% for article in articles %}
+                    <div class="rTableCell">{{ article.headline}}</div>
+                    <div class="rTableCell">{{ article.urlid}}</div>
+                    <div class="rTableCell">{{ article.subtitle}}</div>
+                    <div class="rTableCell">{{ article.introductiontext}}</div>
+                    <div class="rTableCell">{{  article.displayDate|date("m/d/Y", "Europe/Paris") }}</div>
+                    <div class="rTableCell">{{ article.authorfirstname }}
+                        {{article.authorlastname }}</div>
+                    <div class="rTableCell">
+                        <a class="example-image-link" href="{{article.url}}" data-lightbox="example-1">
+                            <img class="example-image" src="{{article.url}}" height="150" width="150" alt="image-1" /></a>
+                    </div>
+                    <div class="rTableCell">
+                        <a class="btn btn-dark" href="/lesson/{{article.id}}">Show Chapters</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <p>No Articles Found . JSON is in Wrong format. Please Check</p>
+        {% endif%}</div>
 {% endblock %}

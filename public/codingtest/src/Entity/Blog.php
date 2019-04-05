@@ -293,5 +293,4 @@ class Blog
         return $this;
     }
 
-    
 }
